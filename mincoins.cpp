@@ -47,6 +47,6 @@ int main()
     if(noofcoins !=2147483646)
         cout<<noofcoins;
     else    
-        cout<<"Doesnot Add up!"; 
+        cout<<"Coins donot Add up to sum!"; 
     return 0;
 }
