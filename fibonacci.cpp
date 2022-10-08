@@ -12,6 +12,7 @@ int fibonacci_tabulation(int n)
     dp[1] = 1;
     for (int i = 2; i <= n; i++)
         dp[i] = dp[i - 1] + dp[i - 2];
+    //returning n-1th element because we are starting from 0 index so n effectively means n-1
     return dp[n - 1];
 }
 
@@ -31,13 +32,15 @@ int fibonacci_optimal(int n)
         a = b;
         b = c;
     }
+    //returning n-1th element because we are starting from 0 index (and question starts from 1st index) 
+    //so n effectively means n-1
     return a;
 }
 
 int main()
 {
     // 0 1 1 2 3 5 8 13 21
-    int n = 8;
+    int n = 3;
     int ans1 = fibonacci_tabulation(n);
     int ans2 = fibonacci_optimal(n);
     cout << ans1 << " is answer from tabulation approach"<<endl;

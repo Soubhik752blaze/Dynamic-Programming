@@ -20,12 +20,12 @@ int countwaystillnstairs(int n)
         n1 = n2;
         n2 = curr;
     }
+    //returning n element because we are starting from 0th stair (by problem itself) so we return nth element
     return n2;
 }
 
 int main()
 {
-    // 0 1 1 2 3 5 8 13 21
     int n = 2;
     int ans = countwaystillnstairs(n);
     cout << ans << " are the no of ways possible"<<endl;
