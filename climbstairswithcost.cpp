@@ -12,8 +12,8 @@ using namespace std;
 int minCostClimbingStairs(vector<int>& cost) {
         //the goal is to reach the n-1th step or n-2thstep 
         //once you pay the cost for that step, we can reach top
-        //so by dp we find the min cost to reach for every step upto n-1th step
-        //At last, we can take the min of last 2 steps(n-1 and n-2) since the top is accessible from those 2 steps
+        //so by dp we find the min cost to reach for every step up until n-1th step
+        //At last, we can take the min of last 2 steps(n-1 and n-2) since the top is accessible from those 2 steps after paying the cost
         int n = cost.size();
         int *dp = new int[n];
         dp[0] = cost[0];
@@ -30,6 +30,7 @@ int main()
     cout << minCostClimbingStairs(cost);
     return 0;
 }
+
 
 //variation of climb stairs problem
 //SC -> o(n)    can be again decreased to o(1) by using variables inplace of array
