@@ -11,7 +11,7 @@ using namespace std;
 int solve(vector<int> arr)
 {
     // If we start from beginning, then for every step we have "pick" or "notpick" option
-    // Pick = arr[i] + x1, where x1 is the max sum up untill arr[i] excluding its adjacent prev element
+    // Pick = arr[i] + x1, where x1 is the max sum up until arr[i] excluding its adjacent prev element
     // Not Pick = 0 + x2, where arr[i] is not selected and x2 is the max sum up untill arr[i] including its adjacent prev element and excluding arr[i]
     // for every step, we choose the max out of "pick" and "notpick" then we cumulate the results in this way upto n-1th element
     int n = arr.size();
