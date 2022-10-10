@@ -32,5 +32,6 @@ int main()
     cout << solve(arr);
 }
 // 1D DP problem
-// SC -> o(n)
+// Also known as house robber problem
+// SC -> o(n) can be made o(1)
 // TC -> o(n)
