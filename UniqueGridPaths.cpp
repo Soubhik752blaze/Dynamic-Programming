@@ -104,5 +104,10 @@ int main()
     cout << countways(m, n);
 }
 
-// TC -> o(m*n)
-// SC -> o(m*n) or o(n)
+// TC -> o(m*n) if using DP
+// SC -> o(m*n) or o(n) if using DP
+
+//NOTE:- it can be solved using o(n) or o(m) TC 
+//but the above TC and SC are for DP used complexities
+
+
