@@ -46,7 +46,7 @@ int countwaystabulation(int m, int n)
         for (int j = 0; j < n; j++)
         {
             //base condition
-            if (i == 0 ||  j == 0){
+            if (i == 0 &&  j == 0){
                 dp[i][j] = 1;
                 continue;
             }
@@ -70,7 +70,7 @@ int countwaysoptimised(int m, int n)
         vector<int> row(n,0);
         for (int j = 0; j < n; j++)
         {
-            if( i == 0 || j == 0)
+            if( i == 0 && j == 0)
             {
                 row[j] = 1;
                 continue;
@@ -92,9 +92,9 @@ int countwaysoptimised(int m, int n)
 int countways(int m, int n)
 {
     // int ans = countwaysrecurive(m - 1 , n - 1 );
-    vector<vector<int>> dp (m, vector<int> (n,-1));
-    int ans = countwaysmemoization(m - 1, n - 1, dp);
-    // int ans = countwaysoptimised(m, n);
+    // vector<vector<int>> dp (m, vector<int> (n,-1));
+    // int ans = countwaysmemoization(m - 1, n - 1, dp);
+    int ans = countwaystabulation(m, n);
     return ans;
 }
 int main()
