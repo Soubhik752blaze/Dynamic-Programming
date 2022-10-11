@@ -22,19 +22,20 @@ int countwaysrecurive(int i, int j)
     return way1 + way2;
 }
 
-int countwaysmemoization(int i, int j, vector<vector<int>> dp)
+int countwaysmemoization(int i, int j, vector<vector<int>> &dp)
 {
-    // use of dp table to remember results
-    if (dp[i][j] != -1)
-        return dp[i][j];
+    
     // base cases
     if (i == 0 && j == 0)
         return 1;
     if (i < 0 || j < 0)
         return 0;
+    // use of dp table to remember results
+    if (dp[i][j] != -1)
+        return dp[i][j];
     // recurring part
-    int way1 = countwaysrecurive(i - 1, j); // dp[i - 1][j];
-    int way2 = countwaysrecurive(i, j - 1); // dp[i][j + 1];
+    int way1 = countwaysmemoization(i - 1, j, dp); // dp[i - 1][j];
+    int way2 = countwaysmemoization(i, j - 1,dp); // dp[i][j + 1];
     // final return
     return dp[i][j] = way1 + way2;
 }
@@ -91,9 +92,9 @@ int countwaysoptimised(int m, int n)
 int countways(int m, int n)
 {
     // int ans = countwaysrecurive(m - 1 , n - 1 );
-    // vector<vector<int>> dp (m, vector<int> (n,-1));
-    // int ans = countwaysmemoization(m - 1, n - 1, dp);
-    int ans = countwaysoptimised(m, n);
+    vector<vector<int>> dp (m, vector<int> (n,-1));
+    int ans = countwaysmemoization(m - 1, n - 1, dp);
+    // int ans = countwaysoptimised(m, n);
     return ans;
 }
 int main()
