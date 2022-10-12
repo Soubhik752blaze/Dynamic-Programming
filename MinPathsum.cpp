@@ -15,7 +15,8 @@ int countwaysrecurive(int i, int j, vector<vector<int>> maze)
     if (i < 0 || j < 0)
         return INT_MAX;
     // recurring part -> From every step we go either left or up until [0][0],
-    // so we count the total no of ways we can go by adding recursively
+    // so we find the min cost of both ways we can go, by adding the value of that cell to the way 
+    // that way we have min cost up until that cell in grid
     int way1 = countwaysrecurive(i - 1, j, maze);
     int way2 = countwaysrecurive(i, j - 1, maze);
     // final return
