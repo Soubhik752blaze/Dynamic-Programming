@@ -1,0 +1,7 @@
+Questions in this repository for DP on subsequences/subsets and target :-
+
+1. Subset Sum equals to target.
+2. Partition Equal Subset.
+3. Partition into 2 subsets with min difference.
+4. Count subsets with sum "K".
+5. Count Partitions with given difference.

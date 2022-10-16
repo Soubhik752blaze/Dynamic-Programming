@@ -1,0 +1,8 @@
+Questions in this repository for DP on grids(2D and 3D) :-
+
+1. Ninja training.
+2. Unique grid Paths.
+3. Unique grid Paths 2.
+4. Min/Max Path Sum.
+5. Tringle Min/Max path Sum.
+6. Cherry pickup 2.
