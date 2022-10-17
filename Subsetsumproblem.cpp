@@ -114,5 +114,5 @@ int main()
     subsetsumwithtarget(k, arr) ? cout << "Yes" : cout << "No";
 }
 
-// TC -> o(n*k)
-// SC -> o(n*k) or o(k)
+// TC -> o(n*k+1)
+// SC -> o(n*k+1) or o(k+1)

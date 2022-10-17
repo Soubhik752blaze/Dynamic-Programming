@@ -127,5 +127,5 @@ int main()
         cout << "The Array cannot be partitioned into two equal subsets";
 }
 
-// TC ->
-// SC ->
+// TC -> O( n * (sum/2 + 1))
+// SC -> O( n * (sum/2 + 1)) or O(sum/2 + 1)
