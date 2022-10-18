@@ -8,6 +8,7 @@ int recursive(int i, int target, vector<int> &arr)
 {
     // base case
     // if the target is achieved we increase count by 1 or if we have go beyond last index, we return 0;
+    // 
     if (target == 0)
         return 1;
     if (i == 0)
@@ -29,10 +30,15 @@ int memoization(int i, int target, vector<int> &arr, vector<vector<int>> &dp)
 {
     // base case
     // if the target is achieved we return true or if we have reached last index, we check if target is achieved
-    if (target == 0)
-        return 1;
+    // includes logic for if element is  0
     if (i == 0)
-        return arr[i] == target;
+    {
+        if(target == 0 && arr[0] == 0)
+            return 2;
+        if(target == 0 || target == arr[0])
+            return 1;
+        return 0;
+    }
     // if answer already exists, we dont recalculate it
     if (dp[i][target] != -1)
         return dp[i][target];
@@ -101,18 +107,18 @@ int spaceoptimised(int n, int k, vector<int> &arr)
 int countsubsetswithsumk(int target, vector<int> &arr)
 {
     int n = arr.size();
-    //vector<vector<int>> dp(n, vector<int>(target + 1, -1));
-    int ans = spaceoptimised(n, target, arr);
+    vector<vector<int>> dp(n, vector<int>(target + 1, -1));
+    int ans = memoization(n - 1, target, arr, dp);
     return ans;
 }
 int main()
 {
-    vector<int> arr = {1, 2, 2, 3};
-    int k = 3;
+    vector<int> arr = {0,0,1};
+    int k = 1;
     cout << "No of subsets found are " << countsubsetswithsumk(k, arr);
 }
 
 // TC -> O(N*K)
 // SC -> O(N*K) or O(K)
 
-//Note:- Incase the numbers contain "0"s then the total answer would be pow(2,n) * ans, where n is the number of zeroes in the array
+
