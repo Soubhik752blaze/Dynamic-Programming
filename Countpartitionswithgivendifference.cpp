@@ -83,13 +83,13 @@ int tabulation(vector<int> &num, int k)
 }
 int countpartitionswithgivendifference(vector<int> &arr, int diff)
 {
-    int n = arr.size();
+    //int n = arr.size();
     int sum = 0;
     for (auto x : arr)
         sum += x;
     if (sum < diff || (sum - diff) % 2)
         return false;
-    vector<vector<int>> dp(n, vector<int>(sum + 1, -1));
+    //vector<vector<int>> dp(n, vector<int>(sum + 1, -1));
     int ans = tabulation(arr, (sum - diff) / 2);
     return ans;
 }

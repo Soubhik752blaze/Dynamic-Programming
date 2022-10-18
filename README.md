@@ -7,7 +7,7 @@ First, Write the Recursive function, then make memoization from it and then make
 Also, for every DP problem, remember the pattern for writing/solving it..
 
 1. Express function in terms of indexes.
-2. Do all possible stuff on that index (base case + other calculations)
+2. Do all possible stuff on that index i.e explore all posibilites (base case + other calculations)
 3. write the return statement (max or min or + or any another operation)
 
 Points to remember for every DP problem:-
