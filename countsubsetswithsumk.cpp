@@ -1,4 +1,4 @@
-/*Question :- We are given an array ‘ARR’ with N positive integers and an integer K.
+/*Question :- We are given an array ‘ARR’ with N positive integers (>0) and an integer K.
 We need to find the number of subsets whose sum is equal to K. */
 
 #include <bits/stdc++.h>
@@ -114,3 +114,5 @@ int main()
 
 // TC -> O(N*K)
 // SC -> O(N*K) or O(K)
+
+//Note:- Incase the numbers contain "0"s then the total answer would be pow(2,n) * ans, where n is the number of zeroes in the array
