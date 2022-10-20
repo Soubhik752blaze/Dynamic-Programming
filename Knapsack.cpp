@@ -1,35 +1,98 @@
-/*Question :- Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack.
- In other words, given two integer arrays val[0..n-1] and wt[0..n-1] which represent values and weights associated with n items respectively.
- Also given an integer W which represents knapsack capacity, find the maximum value subset of val[] such that sum of the weights of this subset is >=  W.
- You cannot break an item, either pick the complete item or don’t pick it (0-1 property).*/
+/*Question :- A thief wants to rob a store.
+He is carrying a bag of capacity W. The store has ‘n’ items.
+Its weight is given by the ‘wt’ array and its value by the ‘val’ array.
+He can either include an item in its knapsack or exclude it but can’t partially have it as a fraction.
+We need to find the maximum value of items that the thief can steal.*/
 
 #include <bits/stdc++.h>
 using namespace std;
 
-int t[100][100];
-
-int knapsack(int wt[], int val[], int w, int n)
+// at each instance, we have two 2 choices pick or not pick the item
+//  if we pick, we add the value to the result and subtract its weight from total weight allowed
+//  if we dont pick, we add no value to result and move on to the next item
+int recursion(int i, vector<int> &wt, vector<int> &val, int weight)
 {
-    if (n == 0 || w == 0)
-        return 0;
-    if (t[n][w] != -1)
-        return t[n][w]; /*Dynamic Programming comes into play*/
+    // basecase
+    if (i == 0)
+    {
+        if (wt[0] <= weight)
+            return val[0];
+        else
+            return 0;
+    }
+    // explore all possibilites
+    int not_take = 0 + recursion(i - 1, wt, val, weight);
+    int take = INT_MIN;
+    if (wt[i] <= weight)
+        take = val[i] + recursion(i - 1, wt, val, weight - wt[i]);
 
-    if (wt[n - 1] <= w)
-        return t[n][w] = max((val[n - 1] + knapsack(wt, val, w - wt[n - 1], n - 1)), knapsack(wt, val, w, n - 1));
-    else
-        return t[n][w] = max((val[n - 1] + knapsack(wt, val, w - wt[n - 1], n - 1)), knapsack(wt, val, w, n - 1));
+    // return max
+    return max(not_take, take);
+}
 
-    return t[n][w];
+int tabulation(vector<int> &wt, vector<int> &val, int W)
+{
+
+    int n = val.size();
+    vector<vector<int>> dp(n, vector<int>(W + 1, 0));
+    // base case
+    for (int i = wt[0]; i <= W; i++)
+        dp[0][i] = val[0];
+
+    // for loop calcaltion
+    for (int i = 1; i < n; i++)
+        for (int weight = 0; weight <= W; weight++)
+        {
+            int not_taken = dp[i - 1][weight];
+            int taken = INT_MIN;
+            if (wt[i] < weight)
+                taken = val[i] + dp[i - 1][weight - wt[i]];
+
+            dp[i][weight] = max(taken, not_taken);
+        }
+    // return
+    return dp[n - 1][W];
+}
+
+int spaceoptimised(vector<int> &wt, vector<int> &val, int W)
+{
+
+    int n = val.size();
+    vector<int> prev(W + 1, 0);
+    // base case
+    for (int i = wt[0]; i <= W; i++)
+        prev[i] = val[0];
+
+    for (int i = 1; i < n; i++)
+        for (int weight = 0; weight <= W; weight++)
+        {
+            int not_taken = prev[weight];
+            int taken = INT_MIN;
+            if (wt[i] < weight)
+                taken = val[i] + prev[weight - wt[i]];
+
+            prev[weight] = max(taken, not_taken);
+        }
+
+    return prev[W];
+}
+
+int knapsack(vector<int> &wt, vector<int> &val, int weight)
+{
+    int n = wt.size();
+    int ans = spaceoptimised(wt, val, weight);
+    return ans;
 }
 
 int main()
 {
-    int val[] = {60, 100, 180};
-    int wt[] = {10, 20, 30};
-    int w = 50;
-    int n = sizeof(val) / sizeof(val[0]);
-    memset(t, -1, sizeof(t));
-    cout << knapsack(wt, val, w, n);
+    vector<int> wt = {2, 3, 5};
+    vector<int> val = {40, 50, 60};
+    int W = 8;
+
+    cout << "The Maximum value of items, thief can steal is " << knapsack(wt, val, W);
     return 0;
 }
+
+// TC -> o(N*W)
+// SC -> o(N*W) or O(W)
