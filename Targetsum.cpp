@@ -47,7 +47,6 @@ int findTargetSumWays(vector<int>&A ,int target)
         
         return pow(2,c)*dp[n][(sum-S)/2];
         }
-};
 
 
 
