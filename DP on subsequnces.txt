@@ -5,3 +5,9 @@ Questions in this repository for DP on subsequences/subsets and target :-
 3. Partition into 2 subsets with min difference.
 4. Count subsets with sum "K".
 5. Count Partitions with given difference.
+6. 0/1 Knapsack.
+7. Minimum coins.
+8. Target Sum.
+9. Coin Change 2.
+10. Unbounded Knapsack.
+11. Rod Cut problem.
