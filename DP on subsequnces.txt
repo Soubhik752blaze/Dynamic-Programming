@@ -11,3 +11,8 @@ Questions in this repository for DP on subsequences/subsets and target :-
 9. Coin Change 2.
 10. Unbounded Knapsack.
 11. Rod Cut problem.
+
+
+Almost all DP on subsequences problems revolve around the recurrence relation of:-
+1. Pick -> then some logic
+2. Not Pick -> then some logic 

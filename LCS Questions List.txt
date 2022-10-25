@@ -1,6 +1,6 @@
 Questions for Longest Common subsequence :-
 
-1. Larget common substring(LCS)
+1. Larget common substring(LCS) length
 2. Print LCS
 3. Shortest common substring(SCS)
 4. Print SCS
