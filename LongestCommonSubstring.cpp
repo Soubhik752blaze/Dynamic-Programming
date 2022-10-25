@@ -27,13 +27,13 @@ int tabulation(string s1, string s2)
         for (int j = 1; j <= m; j++)
         {
             if (s1[i - 1] == s2[j - 1])
-                {
-                    dp[i][j] = 1 + dp[i - 1][j - 1];
-                    ans = max(ans, dp[i][j]);
-                }
+            {
+                dp[i][j] = 1 + dp[i - 1][j - 1];
+                ans = max(ans, dp[i][j]);
+            }
             else
                 dp[i][j] = 0;
-        }  
+        }
     }
 
     return ans;
@@ -50,10 +50,10 @@ int spaceoptimisation(string s1, string s2)
         for (int ind2 = 1; ind2 <= m; ind2++)
         {
             if (s1[ind1 - 1] == s2[ind2 - 1])
-                {
-                    curr[ind2] = 1 + prev[ind2 - 1];
-                    ans = max(ans, curr[ind2]);
-                }
+            {
+                curr[ind2] = 1 + prev[ind2 - 1];
+                ans = max(ans, curr[ind2]);
+            }
             else
                 curr[ind2] = 0;
         }
