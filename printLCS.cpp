@@ -34,26 +34,29 @@ string tabulation(string s1, string s2)
         }
     }
 
-    int length = dp[n][m];
+    // we get the length of LCS
+    int length_LCS = dp[n][m];
     string ans = "";
-    for (int ind = 0; ind < length; ind++)
+    // creating a dummy string of length "length_LCS" which we will later modify
+    for (int ind = 0; ind < length_LCS; ind++)
         ans += "$";
-    int ind = length - 1;
+    int ind = length_LCS - 1;
 
     int i = n, j = m;
-    while(i>0 && j>0)
+    while (i > 0 && j > 0)
     {
-        if(s1[i-1] == s2[j-1])
-            {
-                ans[ind] = s1[i-1];
-                ind--;
-                i--,j--;
-            }
-        else if(dp[i-1][j] > dp[i][j-1])
+        if (s1[i - 1] == s2[j - 1])
+        {
+            ans[ind] = s1[i - 1];
+            ind--;
+            i--, j--;
+        }
+        else if (dp[i - 1][j] > dp[i][j - 1])
         {
             i--;
         }
-        else{
+        else
+        {
             j--;
         }
     }
