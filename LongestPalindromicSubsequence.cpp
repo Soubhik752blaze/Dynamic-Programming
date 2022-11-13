@@ -6,7 +6,7 @@ using namespace std;
 
 // intuition is the LPS has 2 properties:- its same as its reverse and its length is fixed
 // thus, if we want to find the longest palindromic subsequence length, then we can just the find the length of LCS of the input string and its reverse
-// this is possible because the LCS of the reversed and the input string, will be palindromic by itself and will be obviously the longest
+// The longest palindromic subsequence being a palindrome will remain the same when the entire string is reversed. ( and ofcouse LCS is the longest by itself)
 // thus, we simply find the LCS of the input string and its reversed string
 int tabulation(string s1, string s2)
 {
