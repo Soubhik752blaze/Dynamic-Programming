@@ -86,3 +86,6 @@ int main()
     cout << "Length of LCS is " << lengthlcs(s1, s2);
     return 0;
 }
+
+// TC -> O(m*n)
+// SC -> O(m*n)
