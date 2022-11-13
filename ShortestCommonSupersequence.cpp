@@ -17,6 +17,7 @@ string shortestcommonsupersequence(string s1, string s2)
     int n = s1.length();
     int m = s2.length();
     vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+    //compute LCS dp table
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
         {
@@ -28,6 +29,7 @@ string shortestcommonsupersequence(string s1, string s2)
 
     int i = n, j = m;
     string ans = "";
+    //use dp table to find SCSS
     while(i > 0 && j > 0)
     {
         if(s1[i-1] == s2[j-1])
@@ -46,6 +48,7 @@ string shortestcommonsupersequence(string s1, string s2)
             }
     }
 
+    //remaining characters if any
     while(i>0)
         {
             ans.push_back(s1[i-1]);
@@ -56,6 +59,7 @@ string shortestcommonsupersequence(string s1, string s2)
             ans.push_back(s2[j-1]);
             j--;
         }
+    // reverse the string to get the resultant string
     reverse(ans.begin(), ans.end());
     return ans;
 }
