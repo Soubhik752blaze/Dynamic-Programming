@@ -1,0 +1,17 @@
+Questions for Longest Common subsequence :-
+
+1. Larget common subsequence(LCS) length.
+2. Print LCS
+3. Longest common substring length.
+4. Shortest common supersequence(length and print it).
+5. Longest palindromic subsequence
+6. Min no of insertions and deletions makes A->B
+7. Min no of insertions in a string to make it a palindrome.
+8. Min no of deletions in a string to make it a palindrome.
+
+Questions on string matching:- 
+
+1. Count how many times a appears as a subsequence in b (i.e Distinct Subsequences)
+2. Largest repeating subsequence
+3. Length of Largest sequence of a which is a substring in b
+4. Subsequence Pattern Matching
