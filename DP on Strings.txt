@@ -12,6 +12,5 @@ Questions for Longest Common subsequence :-
 Questions on string matching:- 
 
 1. Count how many times a appears as a subsequence in b (i.e Distinct Subsequences)
-2. Largest repeating subsequence
-3. Length of Largest sequence of a which is a substring in b
-4. Subsequence Pattern Matching
+2. Edit Distance 
+3. Subsequence Pattern Matching
