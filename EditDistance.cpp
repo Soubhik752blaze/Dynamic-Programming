@@ -44,12 +44,12 @@ int memoization(int i, int j, string s1, string s2, vector<vector<int>> &dp)
         return i + 1;
 
     if (s1[i] == s2[j])
-        return dp[i][j] = 0 + recursive(i - 1, j - 1, s1, s2);
+        return dp[i][j] = 0 + memoization(i - 1, j - 1, s1, s2, dp);
     else
     {
-        int insertion = 1 + recursive(i, j - 1, s1, s2);
-        int deletion = 1 + recursive(i - 1, j, s1, s2);
-        int replacement = 1 + recursive(i - 1, j - 1, s1, s2);
+        int insertion = 1 + memoization(i, j - 1, s1, s2, dp);
+        int deletion = 1 + memoization(i - 1, j, s1, s2, dp);
+        int replacement = 1 + memoization(i - 1, j - 1, s1, s2, dp);
 
         return dp[i][j] = min(insertion, min(deletion, replacement));
     }
