@@ -62,8 +62,10 @@ int tabulation(string s1, string s2)
     vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
 
     // base case formulation
+    //row wise changes
     for (int i = 0; i <= n; i++)
         dp[i][0] = i;
+    //column wise changes
     for (int j = 0; j <= m; j++)
         dp[0][j] = j;
 
