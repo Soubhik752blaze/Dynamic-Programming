@@ -138,5 +138,5 @@ int main()
     return 0;
 }
 
-// TC -> O(m*n)
-// SC -> O(m*n)
+// TC -> O(n*m)
+// SC -> O(n*m) or o(m)

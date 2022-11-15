@@ -74,7 +74,7 @@ int spaceoptimisation(string s1, string s2)
 int lengthlcs(string s1, string s2)
 {
     int n = s1.length();
-    int m = s1.length();
+    int m = s2.length();
     int ans = spaceoptimisation(s1, s2);
     return ans;
 }
