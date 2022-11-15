@@ -153,3 +153,7 @@ int main()
     string ans = wildcardmatch(s, p) ? "Yes" : "No";
     cout << "Is pattern a match ? Ans:- " << ans;
 }
+
+// Leetcode hard -> needs good logical thinking
+// TC -> O(N*M)
+// SC -> O(N*M) or O(M)
