@@ -112,8 +112,8 @@ int spaceoptimisation(vector<int> &price)
                 
                 curr[buy][cap] = profit;
             }
-            ahead[buy] = curr[buy];
         }
+        ahead = curr;
     }
 
     return ahead[1][2];
