@@ -1,0 +1,8 @@
+Questions based on DP on stocks :- 
+
+1. Stocks buy and sell 1 -> only 1 Transaction is allowed.
+2. Stocks buy and sell 2 -> Unlimited Transactions allowed.
+3. Stocks buy and sell 3 -> At most 2 Transactions are allowed.
+4. Stocks buy and sell 4 -> At most K Transactions are allowed.
+5. Stocks buy and sell with cooldown.
+6. Stocks buy and sell with Transaction Fee.
