@@ -68,12 +68,8 @@ int tabulation(vector<int> price)
     // general scenario
     for (int i = n - 1; i >= 0; i--)
     {
-        for (int buy = 1; buy >= 0; buy--)
-        {
-
-            dp[i][1] = max(-price[i] + dp[i + 1][0], dp[i + 1][1]);
-            dp[i][0] = max(price[i] + dp[i + 2][1], dp[i + 1][0]);
-        }
+        dp[i][1] = max(-price[i] + dp[i + 1][0], dp[i + 1][1]);
+        dp[i][0] = max(price[i] + dp[i + 2][1], dp[i + 1][0]);
     }
 
     // return scenario
@@ -84,18 +80,15 @@ int tabulation(vector<int> price)
 int spaceoptimised(vector<int> price)
 {
     int n = price.size();
-    vector<int> ahead2(2, 0), ahead1(2,0), curr(2, 0);
+    vector<int> ahead2(2, 0), ahead1(2, 0), curr(2, 0);
     // base case already taken care as all values already 0
 
     // general scenario
     for (int i = n - 1; i >= 0; i--)
     {
-        for (int buy = 1; buy >= 0; buy--)
-        {
+        curr[1] = max(-price[i] + ahead1[0], ahead1[1]);
+        curr[0] = max(price[i] + ahead2[1], ahead1[0]);
 
-            curr[1] = max(-price[i] + ahead1[0], ahead1[1]);
-            curr[0] = max(price[i] + ahead2[1], ahead1[0]);
-        }
         ahead2 = ahead1;
         ahead1 = curr;
     }
@@ -103,29 +96,20 @@ int spaceoptimised(vector<int> price)
     // return scenario
     // we are returning for buy = 1 because at ind 0 we have the access to buy
     return curr[1];
-
 }
-int stockbuyandsell2(vector<int> price)
+int stockbuyandsellwithcooldwon(vector<int> price)
 {
     int n = price.size();
     // vector<vector<int>> dp (n+2, vector<int> (2, -1));
     // return memoization(0, 1, price, n,dp);
-    return tabulation(price);
+    return spaceoptimised(price);
 }
 
 int main()
 {
     vector<int> prices = {1, 2, 3, 0, 2};
-    cout << "Max profit possible is " << stockbuyandsell2(prices);
+    cout << "Max profit possible is " << stockbuyandsellwithcooldwon(prices);
 }
 
-// TC -> O(n*2)
+// TC -> O(n*2) or o(n) incase the buy loop is removed as done in tabulation
 // SC -> O(n*2) or o(1) incase of using space optimisation
-
-// Best TC is o(n) and SC o(1) by the following code :-
-/* int profit = 0;
-        for(int i=1;i<prices.size();i++)
-            if(prices[i]>prices[i-1])
-                profit+=prices[i]-prices[i-1];
-        return profit;
-*/
