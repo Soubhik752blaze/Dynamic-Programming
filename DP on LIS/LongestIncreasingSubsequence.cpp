@@ -25,7 +25,7 @@ int memoization(int i, vector<int> nums, int prev_ind, int n, vector<vector<int>
     // base case
     if (i == n)
         return 0;
-    //since we cant array[-1] so we coordinate shift and store every prev_ind as prev_ind+1 while storing to dp 
+    //since we cant have array[-1] so we coordinate shift and store every prev_ind as prev_ind+1 while storing to dp 
     if (dp[i][prev_ind + 1] != -1)
         return dp[i][prev_ind + 1];
     // explore all approach and return best fit option
