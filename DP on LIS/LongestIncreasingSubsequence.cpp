@@ -91,19 +91,40 @@ int spaceoptimisation(vector<int> nums)
     return next[-1 + 1];
     // return statement
 }
+
+//used for printing LIS
+int bestway(vector<int> nums)
+{
+    int n = nums.size();
+    //dp[i] signifies length of LIS that ends at index i
+    vector<int> dp(n,1);
+    int ans = INT_MIN;
+    // general scenario
+    for (int i = 0; i < n; i++){
+        for (int prev = 0; prev < i; prev++)
+        {
+            if(nums[i] > nums[prev])
+                dp[i] = max( 1 + dp[prev] , dp[i]);
+        }
+        ans = max(ans, dp[i]);
+    }       
+
+    return ans;
+
+}
 int lengthofLIS(vector<int> nums)
 {
     int n = nums.size();
     // vector<vector<int>> dp(n, vector<int>(n + 1, -1));
     // return memoization(0, nums, -1, n, dp);
     // return recursive(0, nums, -1, n);
-    return spaceoptimisation(nums);
+    return bestway(nums);
 }
 int main()
 {
-    vector<int> nums = {10, 9, 2, 5, 3, 7, 101, 18};
+    vector<int> nums = {5,4,11,1,16,8};
     cout << "Length of LIS is :- " << lengthofLIS(nums);
 }
 
 //TC -> O(n*n)
-//SC -> O(n)
+//SC -> O(n) 
