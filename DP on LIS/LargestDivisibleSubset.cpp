@@ -6,7 +6,7 @@ void LDS(vector<int> nums)
 {
     int n = nums.size();
     // since subset keeps no necessity of maintaining order so we can sort the array
-    //  once array is sorted, finding Largest Divisble subset == Longest Divisible Subsequence as order doesnot matter anyway
+    // once array is sorted, finding Largest Divisble subset == Longest Divisible Subsequence as order doesnot matter anyway
     sort(nums.begin(), nums.end());
     vector<int> dp(n, 1), hash(n);
     int last_index = 0;
