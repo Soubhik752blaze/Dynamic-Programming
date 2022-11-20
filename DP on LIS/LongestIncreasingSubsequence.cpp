@@ -15,6 +15,7 @@ int recursive(int i, vector<int> nums, int prev_ind, int n)
     // part of LIS
     if (prev_ind == -1 || nums[i] > nums[prev_ind])
     {
+        //if part of LIS then increase length of LIS by 1 and make the current index as new prev_ind
         take = 1 + recursive(i + 1, nums, i, n);
     }
 
