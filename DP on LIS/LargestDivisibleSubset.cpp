@@ -18,6 +18,7 @@ void LDS(vector<int> nums)
         hash[i] = i;
         for (int j = 0; j < i; j++)
         {
+            //only part change from LIS to LDS is divisibility check as implemented below
             if (nums[i] % nums[j] == 0 && dp[i] < 1 + dp[j])
             {
                 dp[i] = 1 + dp[j];
