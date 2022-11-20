@@ -44,5 +44,5 @@ int main()
     cout << "Length of LIS is :- " << lengthofLIS(nums);
 }
 
-// TC -> O(n)
+// TC -> O(n*logn)
 // SC -> O(n)
