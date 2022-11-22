@@ -116,3 +116,6 @@ int main()
                                  
   cout<<"The total number of ways is " <<countWaysToMakeChange(target, arr);
 }
+
+//TC -> o(n*target)
+//SC -> o(target)
