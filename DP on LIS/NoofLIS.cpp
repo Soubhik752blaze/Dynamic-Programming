@@ -15,7 +15,7 @@ int noofLIS(vector<int> arr)
 
     // while calculating the dp array for LIS, we keep a count array telling how many LIS are present
     // so we keep a simple check that if dp[i] == 1 + dp[j] that means that it is also a LIS.. so just add count[j] to count[i]
-    // This is because all prev LIS ending at arr[j] can form LIS with arr[i] being a part of it as well 
+    // This is because all prev LIS ending at arr[j] can form LIS including arr[i] to have same length LIS, thus increasing count by count[j]
     // Also, if dp[i] > 1 + dp[j], then we have a new LIS length so take count[i] = count[j]
     // This is because all prev LIS ending at arr[j] can form LIS with arr[i] being a part of it as well and forming the longest LIS now
     for(int i  = 1; i<n; i++){
