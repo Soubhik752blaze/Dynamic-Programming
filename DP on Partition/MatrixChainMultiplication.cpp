@@ -1,7 +1,7 @@
 /*Question :- Given a chain of Matrices A1, A2, A3, A4...An. Find the min cost of multiplying these matrices.
 The min cost is defined here as the min no of scalar multiplications required
 If two Matrices A1 (p x q) and A2 (q x s) are to be multiplied,
-The total number of multiplications required to multiply A1 and A2 are: p*q*s/
+The total number of multiplications required to multiply A1 and A2 are: p*q*s    */
 
 // As this problem of matrix multiplication solves one big problem ( minimum operations to get A1.A2….An) and the answer varies in the order the subproblems are being solved,
 // we can identify this problem of pattern partition DP.
