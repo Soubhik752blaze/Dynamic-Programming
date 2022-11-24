@@ -1,0 +1,23 @@
+Pattern Identification:
+
+Whenever we need to find the answer to a large problem such that the problem can be broken into subproblems and the final answer varies due to the order in which the subproblems are solved, 
+we can think in terms of partition DP.
+Eg :- 1 x 2 + 3 x 5
+Option A :- 1 x (2 + 3) x 5 = 25
+Option B:- (1 x 2) + (3 x 5) = 17
+Here Answer varies according to the pattern we decide. In such cases, we can think of partition DP.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Rules to solve the problem of partition DP:
+
+1. Start with the entire block/array and mark it with i,j. We need to find the value of f(i,j).
+2. Try all partitions.
+3. Run the best possible answer of the two partitions ( answer that comes after dividing the problem into two subproblems and solving them recursively).
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Questions :- 
+
+1> Matrix Chain Multiplication
+2> Minimum cost to cut the stick
