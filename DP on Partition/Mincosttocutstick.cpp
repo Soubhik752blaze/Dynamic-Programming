@@ -86,5 +86,5 @@ int main()
 
 // Hard to Intuitively find the answer
 // sort of a pattern to keep in mind
-// TC -> O()
-// SC -> O()
+// TC -> O(N*N*N)
+// SC -> O(N*N)
