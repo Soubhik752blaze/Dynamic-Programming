@@ -21,3 +21,8 @@ Questions :-
 
 1> Matrix Chain Multiplication
 2> Minimum cost to cut the stick
+3> Burst Balloons [HARD]
+4> Evaluate expression to true [HARD]
+5> Palindrome partition 1
+6> Palindrome partition 2
+
