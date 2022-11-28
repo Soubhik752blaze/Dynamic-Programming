@@ -15,6 +15,7 @@ using namespace std;
 // for replacing the entire subarray with all max elements and taking the sum, we keep track of length of subarray and max element in that partition
 // that way the sum of that partition becomes (length of partition)*(max element in that parition)
 // we do this for all possible partitions and take the max possible sum out as the answer
+// recursive(i) means max_sum for the vector "arr" when it is starting from index i and ending at n-1.
 int recursive(int i, int k, vector<int> arr, int n)
 {
     // base case
