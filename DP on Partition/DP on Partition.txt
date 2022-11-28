@@ -19,10 +19,17 @@ Rules to solve the problem of partition DP:
 
 Questions :- 
 
-1> Matrix Chain Multiplication
-2> Minimum cost to cut the stick
-3> Burst Balloons [HARD]
-4> Evaluate expression to true [HARD]
-5> Palindrome partition 1
-6> Palindrome partition 2
+1> Matrix Chain Multiplication.
+2> Minimum cost to cut the stick.
+3> Burst Balloons. [HARD]
+4> Evaluate expression to true. [HARD]
+
+----- based on front partition ------
+5> Palindrome partition 2,
+6> Partition Array for Max Sum.
+
+----- based on DP on squares --------
+1> Maximum Rectangle Area with all 1s.
+2> Count Square submatrices with all 1s. 
+
 
