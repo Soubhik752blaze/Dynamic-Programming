@@ -95,5 +95,5 @@ int main()
 }
 
 // front partition problem
-// TC -> O(n*n)
+// TC -> O(n*k)
 // SC -> O(n)
