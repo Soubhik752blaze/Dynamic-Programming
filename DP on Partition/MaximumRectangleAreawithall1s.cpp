@@ -50,9 +50,7 @@ int maxrectanglewithall1s(vector<vector<int>> &matrix)
             else
                 histo[c] = 0;
         }
-        cout << endl;
         int ans = helper(histo);
-        // cout << ans << " ";
         max_ans = max(max_ans, ans);
     }
     return max_ans;
@@ -66,5 +64,5 @@ int main()
     cout << "Area of largest rectangle containing only 1's is " << maxrectanglewithall1s(matrix) << " sq meter";
 }
 
-// TC ->
-// SC ->
+// TC -> o(row*(col + col))
+// SC -> o(col)
