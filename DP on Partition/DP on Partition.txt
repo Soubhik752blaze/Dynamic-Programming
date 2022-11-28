@@ -5,14 +5,14 @@ we can think in terms of partition DP.
 Eg :- 1 x 2 + 3 x 5
 Option A :- 1 x (2 + 3) x 5 = 25
 Option B:- (1 x 2) + (3 x 5) = 17
-Here Answer varies according to the pattern or the subproblem we decide. In such cases, we can think of partition DP.
+Here Answer varies according to the pattern in which we decide to solve the subproblems. In such cases, we can think of partition DP.
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
 Rules to solve the problem of partition DP:
 
 1. Start with the entire block/array and mark it with i,j. We need to find the value of f(i,j).
-2. Try all partitions.
+2. Try all partitions possible over this i to j range (according to some given condition if present).
 3. Run the best possible answer of the two partitions ( answer that comes after dividing the problem into two subproblems and solving them recursively).
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ Questions :-
 1> Matrix Chain Multiplication.
 2> Minimum cost to cut the stick.
 3> Burst Balloons. [HARD]
-4> Evaluate expression to true. [HARD]
+4> Evaluate expression to true. [Most logical][HARD]
 
 ----- based on front partition ------
 5> Palindrome partition 2,
