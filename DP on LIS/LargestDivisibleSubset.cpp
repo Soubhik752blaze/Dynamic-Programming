@@ -33,7 +33,6 @@ void LDS(vector<int> nums)
             
         }
     }
-
     vector<int> ans;
     ans.push_back(nums[last_index]);
     while (hash[last_index] != last_index)
