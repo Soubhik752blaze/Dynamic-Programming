@@ -24,7 +24,7 @@ int countwaysrecurive(int i, int j, vector<vector<int>> maze)
 
 int countwaysmemoization(int i, int j, vector<vector<int>> maze, vector<vector<int>> &dp)
 {
-    
+
     // base cases
     if (i > 0 && j > 0 && maze[i][j] == -1)
         return 0;
@@ -35,7 +35,7 @@ int countwaysmemoization(int i, int j, vector<vector<int>> maze, vector<vector<i
 
     // use of dp table to remember results
     if (dp[i][j] != -1)
-        return dp[i][j];    
+        return dp[i][j];
     // recurring part
     int way1 = countwaysmemoization(i - 1, j, maze, dp); // dp[i - 1][j];
     int way2 = countwaysmemoization(i, j - 1, maze, dp); // dp[i][j + 1];
@@ -50,7 +50,7 @@ int countwaystabulation(int m, int n, vector<vector<int>> maze)
         for (int j = 0; j < n; j++)
         {
             // base condition
-            if ( maze[i][j] == -1)
+            if (maze[i][j] == -1)
             {
                 dp[i][j] = 0;
                 continue;
@@ -60,7 +60,7 @@ int countwaystabulation(int m, int n, vector<vector<int>> maze)
                 dp[i][j] = 1;
                 continue;
             }
-            
+
             int up = 0, left = 0;
             if (i > 0)
                 up = dp[i - 1][j];
@@ -82,11 +82,11 @@ int countwaysoptimised(int m, int n, vector<vector<int>> maze)
         vector<int> row(n, 0);
         for (int j = 0; j < n; j++)
         {
-            if(maze[i][j] == -1)
-                {
-                    row[j] = 0;
-                    continue;
-                }
+            if (maze[i][j] == -1)
+            {
+                row[j] = 0;
+                continue;
+            }
             if (i == 0 || j == 0)
             {
                 row[j] = 1;
@@ -111,7 +111,7 @@ int mazeObstacles(int m, int n, vector<vector<int>> maze)
     // vector<vector<int>> dp(m, vector<int>(n, -1));
     // int ans = countwaysmemoization(m - 1, n - 1, maze, dp);
     int ans = countwaystabulation(m, n, maze);
-    //int ans = countwaysoptimised(m, n, maze);
+    // int ans = countwaysoptimised(m, n, maze);
 
     return ans;
 }
