@@ -8,7 +8,7 @@ Dishes can be prepared in any order and the chef can discard some dishes to get 
 #include <bits/stdc++.h>
 using namespace std;
 
-//Logic/Intuition :- Pattern of 0/1 knapsack just on a sorted array(either take or dont take)
+// Logic/Intuition :- Pattern of 0/1 knapsack just on a sorted array(either take or dont take)
 
 // memoization
 int solvebymemoization(vector<int> &satisfaction, int index, int time, vector<vector<int>> &dp)
@@ -45,6 +45,26 @@ int maxSatisfaction(vector<int> &satisfaction)
     return solvebytabulation(satisfaction);
 }
 
+// Non-Intuitive O(nlogn) Solution
+/*The algorithm used in this solution is based on sorting the satisfaction list in descending order and iterating over it. 
+At each iteration, the satisfaction of the current dish is added to a running sum "sum", and if this sum is positive, it is added to the answer varibale "ans". 
+This guarantees that the algorithm always considers the best dishes to cook, which are the ones with higher satisfaction values.*/
+int maxSatisfactionBestSolution(vector<int> &satisfaction)
+{
+    vector<int> v = satisfaction;
+    sort(v.begin(), v.end());
+    reverse(v.begin(), v.end());
+    int sum = 0, ans = 0;
+    for (int i = 0; i < v.size(); i++)
+    {
+        if (sum + v[i] > 0)
+        {
+            ans += sum + v[i];
+            sum += v[i];
+        }
+    }
+    return ans;
+}
 int main()
 {
     vector<int> satisfaction = {-1, -8, 0, 5, -9};
@@ -52,3 +72,6 @@ int main()
     cout << "Max Like Coefficient is " << ans;
     return 0;
 }
+
+// TC -> O(n*n) but can be optimised to O(nlogn) in best solution
+// SC -> O(n*n) but can be optimised to O(1) in best solution
