@@ -11,7 +11,7 @@ int countwaysrecurive(int i, int j, vector<vector<int>> maze)
 {
     // base cases
     if (i == 0 && j == 0)
-        return 1;
+        return 1;   
     if (i < 0 || j < 0 || maze[i][j] == -1)
         return 0;
     // recurring part -> From every step we go either left or up until [0][0],
