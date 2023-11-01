@@ -24,8 +24,8 @@ int fibonacci_optimal(int n)
     // this is because from logical pov, we only need the prev 2 values for calculation
     // so for just 2 values, its better to use 2 variables and not a vector, thus saving up a lot of space
     int curr;
-    int prev = 0;
-    int prev2 = 1;
+    int prev = 1;
+    int prev2 = 0;
     for (int i = 2; i <= n; i++)
     {
         curr = prev + prev2;
@@ -34,7 +34,7 @@ int fibonacci_optimal(int n)
     }
     // returning n-1th element because we are starting from 0 index (and question starts from 1st index)
     // so n effectively means n-1
-    return prev;
+    return prev2;
 }
 
 int main()
