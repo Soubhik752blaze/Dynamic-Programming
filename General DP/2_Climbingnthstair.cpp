@@ -1,4 +1,4 @@
-// Question:- Given n as no of stairs, find the no of ways to reach nth stair,
+// Question:- Given n as no of stairs, find the no of ways to reach nth stair from base (you can consider 0th stair)
 // It is given that from ith stair, you can go i+1th stair or i+2th stair directly..
 #include <bits/stdc++.h>
 using namespace std;
