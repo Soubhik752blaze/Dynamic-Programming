@@ -4,7 +4,7 @@ With time, I will also add even more DP problems if found important from intervi
 Also, The only Pattern we need to remember for any DP problem.
 First, Write the Recursive function, then make memoization from it and then make Tabulation. Lastly, if possible space optimise it. 
 
-Also, for every DP problem, remember the pattern for writing/solving it..
+Also, for every DP problem, remember the pattern for writing/solving it terms of recursion first
 
 1. Express function in terms of indexes.
 2. Do all possible stuff on that index i.e explore all posibilites (base case + other calculations)
