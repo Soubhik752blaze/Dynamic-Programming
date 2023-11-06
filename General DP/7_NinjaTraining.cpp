@@ -18,64 +18,77 @@ int solvebyrecursive(vector<vector<int>> arr, int day, int last)
 {
     if (day == 0)
     {
-        int maxi = 0;
+        int maxpoints = 0;
         for (int i = 0; i < 3; i++)
         {
             if (i != last)
-                maxi = max(maxi, arr[day][i]);
+                maxpoints = max(maxpoints, arr[day][i]);
         }
-        return maxi;
+        return maxpoints;
     }
-    int maxi = 0;
+    int maxpoints = 0;
     for (int i = 0; i < 3; i++)
     {
         if (i != last)
         {
             int point = arr[day][i] + solvebyrecursive(arr, day - 1, i);
-            maxi = max(maxi, point);
+            maxpoints = max(maxpoints, point);
         }
     }
-    return maxi;
+    return maxpoints;
 }
-int solvebymemoization(vector<vector<int>> arr, int day, int last, vector<vector<int>> &dp)
+
+int solvebyMemoization(vector<vector<int>> arr, int day, int last, vector<vector<int>> &dp)
 {
-    if( dp[day][last] != -1)
+    if (dp[day][last] != -1)
         return dp[day][last];
     if (day == 0)
     {
-        int maxi = 0;
+        int maxpoint = 0;
         for (int i = 0; i < 3; i++)
         {
             if (i != last)
-                maxi = max(maxi, arr[day][i]);
+                maxpoint = max(maxpoint, arr[day][i]);
         }
-        return dp[day][last] = maxi;
+        return dp[day][last] = maxpoint;
     }
-    
-    int maxi = 0;
+
+    int maxpoint = 0;
     for (int i = 0; i < 3; i++)
     {
         if (i != last)
         {
-            int point = arr[day][i] + solvebymemoization(arr, day - 1, i, dp);
-            maxi = max(maxi, point);
+            int point = arr[day][i] + solvebyMemoization(arr, day - 1, i, dp);
+            maxpoint = max(maxpoint, point);
         }
     }
-    return dp[day][last] = maxi;
+    return dp[day][last] = maxpoint;
 }
 
-int solvebytabulation(vector<vector<int>> arr)
+int solvebyTabulation(vector<vector<int>> arr)
 {
     int n = arr.size();
-    vector<vector<int>> dp (n, vector<int> (4, 0));
-    //setting base conditions
-    dp[0][0] = max(arr[0][1],arr[0][2]);
-    dp[0][1] = max(arr[0][0],arr[0][2]);
-    dp[0][2] = max(arr[0][0],arr[0][1]);
-    dp[0][3] = max(arr[0][0],max(arr[0][1], arr[0][2]));
-    //dp calculation
-    for(int day = 1; day < n; day++)
-        for(int last = 0 ; last <4; last++){
+    vector<vector<int>> dp(n, vector<int>(4, 0));
+
+    // setting base conditions
+    // dp[0][0] = max(arr[0][1], arr[0][2]);
+    // dp[0][1] = max(arr[0][0], arr[0][2]);
+    // dp[0][2] = max(arr[0][0], arr[0][1]);
+    // dp[0][3] = max(arr[0][0], max(arr[0][1], arr[0][2]));
+
+    for (int task = 0; task < 4; task++){
+        int maxpoint = 0;
+        for (int last = 0; last < 3; last++){
+            if (last != task){
+                maxpoint = max(maxpoint, arr[0][last]);
+            } 
+        }
+        dp[0][task] = maxpoint;
+    }
+        
+    // dp calculation
+    for (int day = 1; day < n; day++)
+        for (int last = 0; last < 4; last++){
             dp[day][last] = 0;
             for (int i = 0; i < 3; i++){
                 if (i != last){
@@ -84,42 +97,47 @@ int solvebytabulation(vector<vector<int>> arr)
                 }
             }
         }
-    return dp[n-1][3];
+    return dp[n - 1][3];
 }
 
 int optimisedDP(vector<vector<int>> arr)
 {
     int n = arr.size();
-    vector<int> prev (4, 0);
-    //setting base conditions
-    prev[0] = max(arr[0][1],arr[0][2]);
-    prev[1] = max(arr[0][0],arr[0][2]);
-    prev[2] = max(arr[0][0],arr[0][1]);
-    prev[3] = max(arr[0][0],max(arr[0][1], arr[0][2]));
-    //dp calculation
-    for(int day = 1; day < n; day++){
-        vector<int> temp (4,0);
-        for(int last = 0 ; last <4; last++){
+    vector<int> prev(4, 0);
+    // setting base conditions
+    prev[0] = max(arr[0][1], arr[0][2]);
+    prev[1] = max(arr[0][0], arr[0][2]);
+    prev[2] = max(arr[0][0], arr[0][1]);
+    prev[3] = max(arr[0][0], max(arr[0][1], arr[0][2]));
+    // dp calculation
+    for (int day = 1; day < n; day++)
+    {
+        vector<int> temp(4, 0);
+        for (int last = 0; last < 4; last++)
+        {
             temp[last] = 0;
-            for (int i = 0; i < 3; i++){
-                if (i != last){
+            for (int i = 0; i < 3; i++)
+            {
+                if (i != last)
+                {
                     int point = arr[day][i] + prev[i];
                     temp[last] = max(temp[last], point);
                 }
-            }  
+            }
         }
         prev = temp;
     }
     return prev[3];
 }
 
-int ninjatraining(vector<vector<int>> arr){
+int ninjatraining(vector<vector<int>> arr)
+{
     int n = arr.size();
-    //int ans = solvebyrecursive(arr, n - 1, 3);
-    //vector<vector<int>> dp (n, vector<int> (4, -1));
-    //int ans = solvebymemoization(arr, n - 1, 3, dp);
-    //int ans = solvebytabulation(arr);
-    int ans = optimisedDP(arr);
+    // int ans = solvebyrecursive(arr, n - 1, 3);
+    // vector<vector<int>> dp (n, vector<int> (4, -1));
+    // int ans = solvebyMemoization(arr, n - 1, 3, dp);
+    int ans = solvebyTabulation(arr);
+    // int ans = optimisedDP(arr);
     return ans;
 }
 int main()
