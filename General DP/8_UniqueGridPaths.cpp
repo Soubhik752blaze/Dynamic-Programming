@@ -24,7 +24,7 @@ int countwaysrecurive(int i, int j)
 
 int countwaysmemoization(int i, int j, vector<vector<int>> &dp)
 {
-    
+
     // base cases
     if (i == 0 && j == 0)
         return 1;
@@ -35,18 +35,21 @@ int countwaysmemoization(int i, int j, vector<vector<int>> &dp)
         return dp[i][j];
     // recurring part
     int way1 = countwaysmemoization(i - 1, j, dp); // dp[i - 1][j];
-    int way2 = countwaysmemoization(i, j - 1,dp); // dp[i][j + 1];
+    int way2 = countwaysmemoization(i, j - 1, dp); // dp[i][j + 1];
     // final return
     return dp[i][j] = way1 + way2;
 }
+
 int countwaystabulation(int m, int n)
 {
     vector<vector<int>> dp(m, vector<int>(n, 0));
-    for (int i = 0; i < m; i++){
+    for (int i = 0; i < m; i++)
+    {
         for (int j = 0; j < n; j++)
         {
-            //base condition
-            if (i == 0 &&  j == 0){
+            // base condition
+            if (i == 0 && j == 0)
+            {
                 dp[i][j] = 1;
                 continue;
             }
@@ -57,50 +60,49 @@ int countwaystabulation(int m, int n)
                 left = dp[i][j - 1];
             dp[i][j] = up + left;
         }
-    }     
+    }
     // final return
     return dp[m - 1][n - 1];
 }
 
 int countwaysoptimised(int m, int n)
 {
-    vector<int> prev (n,0);
-    
-    for (int i = 0; i < m; i++){
-        vector<int> row(n,0);
+    vector<int> prev(n, 0);
+    for (int i = 0; i < m; i++)
+    {
+        vector<int> current(n, 0);
         for (int j = 0; j < n; j++)
         {
-            if( i == 0 && j == 0)
+            if (i == 0 && j == 0)
             {
-                row[j] = 1;
+                current[j] = 1;
                 continue;
             }
             int up = 0, left = 0;
-            if( i > 0)
+            if (i > 0)
                 up = prev[j];
-            if(j > 0)
-                left = row[j - 1];
-            row[j] = up + left;
+            if (j > 0)
+                left = current[j - 1];
+            current[j] = up + left;
         }
-        prev = row;
-    }     
+        prev = current;
+    }
     // final return
     return prev[n - 1];
 }
-
 
 int countways(int m, int n)
 {
     // int ans = countwaysrecurive(m - 1 , n - 1 );
     // vector<vector<int>> dp (m, vector<int> (n,-1));
     // int ans = countwaysmemoization(m - 1, n - 1, dp);
-    int ans = countwaystabulation(m, n);
+    int ans = countwaysoptimised(m, n);
     return ans;
 }
 int main()
 {
     int m = 3;
-    int n = 2;
+    int n = 3;
 
     cout << countways(m, n);
 }
@@ -108,7 +110,5 @@ int main()
 // TC -> o(m*n) if using DP
 // SC -> o(m*n) or o(n) if using DP
 
-//NOTE:- it can be solved using o(n) or o(m) TC 
-//but the above TC and SC are for DP used complexities
-
-
+// NOTE:- it can be solved using o(n) or o(m) TC
+// but the above TC and SC are for DP used complexities

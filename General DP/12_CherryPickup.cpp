@@ -29,17 +29,15 @@ int recursive(int i, int j1, int j2, int m, int n, vector<vector<int>> grid)
             return grid[i][j1] + grid[i][j2];
     }
 
-    // write all possible traversal ways and take max of ways for both person
+    // Write all possible traversal ways and take max of ways for both person
     // for every specific step of alice, bob has 3 directions to go
-    //  so total 9 states of progression are there in this case..
-    //  we reenact the scenario here using dj1 and dj2 variables
+    // so total 9 states of progression are there in this case..
+    // we reenact the scenario here using dj1 and dj2 variables
     // for every traversal to lower row, we see which state is yielding max cherries for alice and bob combined
     // we pick that state and move ahead
-    int maxi = INT_MIN;
-    for (int dj1 = -1; dj1 <= 1; dj1++)
-    {
-        for (int dj2 = -1; dj2 <= 1; dj2++)
-        {
+    int maxi = -1e8;
+    for (int dj1 = -1; dj1 <= 1; dj1++){
+        for (int dj2 = -1; dj2 <= 1; dj2++){
             int ans = 0;
             // if bob and alice final destination is same, consider cell value only once...
             if (j1 == j2)
@@ -56,12 +54,11 @@ int recursive(int i, int j1, int j2, int m, int n, vector<vector<int>> grid)
 
 int memoization(int i, int j1, int j2, int m, int n, vector<vector<int>> grid, vector<vector<vector<int>>> &dp)
 {
-    //j1 is position of alice and j2 of bob
+    // j1 is position of alice and j2 of bob
     if (j1 < 0 || j2 < 0 || j1 > n - 1 || j2 > n - 1)
         return -1e9;
 
-    if (i == m - 1)
-    {
+    if (i == m - 1){
         // if bob and alice final destination is same, consider cell value only once...
         if (j1 == j2)
             return grid[i][j1];
@@ -72,11 +69,9 @@ int memoization(int i, int j1, int j2, int m, int n, vector<vector<int>> grid, v
     if (dp[i][j1][j2] != -1)
         return dp[i][j1][j2];
 
-    int maxi = INT_MIN;
-    for (int dj1 = -1; dj1 <= 1; dj1++)
-    {
-        for (int dj2 = -1; dj2 <= 1; dj2++)
-        {
+    int maxi = -1e8;
+    for (int dj1 = -1; dj1 <= 1; dj1++) {
+        for (int dj2 = -1; dj2 <= 1; dj2++){
             int ans = 0;
             // if bob and alice final destination is same, consider cell value only once...
             if (j1 == j2)
@@ -90,6 +85,7 @@ int memoization(int i, int j1, int j2, int m, int n, vector<vector<int>> grid, v
     // final return
     return dp[i][j1][j2] = maxi;
 }
+
 int tabulation(int m, int n, vector<vector<int>> grid)
 {
     /*For the tabulation approach, it is better to understand what a cell in the 3D DP array means. As we had done in memoization, we will initialize a dp[] array of size [N][M][M].
@@ -99,35 +95,36 @@ int tabulation(int m, int n, vector<vector<int>> grid)
     // tabulation = opposite of memoization direction always
     // so here we form bases in 0th row and make our way upto last row
     // for calculation, we just take the same concept used in recursive and memoization, and make modification accordingly
-    vector<vector<vector<int>>> dp(m,vector<vector<int>> (n, vector<int>(n, 0)));
-    //forming base case
-    for (int j1 = 0 ; j1 < n; j1++)
-        for (int j2 = 0 ; j2 < n; j2++)
-        {
-        if (j1 == j2)
-            dp[m - 1][j1][j2] = grid[m - 1][j1];
-        else
-            dp[m - 1][j1][j2] = grid[m - 1][j1] + grid[m - 1][j2];
+    vector<vector<vector<int>>> dp(m, vector<vector<int>>(n, vector<int>(n, 0)));
+    // forming base case
+    for (int j1 = 0; j1 < n; j1++)
+        for (int j2 = 0; j2 < n; j2++){
+            if (j1 == j2)
+                dp[m - 1][j1][j2] = grid[m - 1][j1];
+            else
+                dp[m - 1][j1][j2] = grid[m - 1][j1] + grid[m - 1][j2];
         }
-    //express every step in for loop
-    for(int i = m - 2; i >= 0; i--){
-        for (int j1 = 0; j1 < n ; j1++){
-            for (int j2 = 0; j2 < n ; j2++){
-                int maxi = INT_MIN;
+    // express every step in for loop
+    for (int i = m - 2; i >= 0; i--){
+        for (int j1 = 0; j1 < n; j1++){
+            for (int j2 = 0; j2 < n; j2++)
+            {
+                int maxi = -1e8;
                 for (int dj1 = -1; dj1 <= 1; dj1++){
-                    for (int dj2 = -1; dj2 <= 1; dj2++)
-                    {
-                        int ans;
+                    for (int dj2 = -1; dj2 <= 1; dj2++){
+                        int value;
                         // if bob and alice final destination is same, consider cell value only once...
                         if (j1 == j2)
-                            ans = grid[i][j1];
+                            value = grid[i][j1];
                         else
-                            ans = grid[i][j1] + grid[i][j2];
-                        if(j2 + dj2 >= 0 && j1 + dj1 >= 0 && j1 + dj1 <= n - 1 && j2 + dj2 <= n - 1 )
-                            ans += dp[i + 1][j1 + dj1][j2 + dj2];
+                            value = grid[i][j1] + grid[i][j2];
+
+                        //if next steps are valid take it, else make it invalid
+                        if (j2 + dj2 >= 0 && j1 + dj1 >= 0 && j1 + dj1 <= n - 1 && j2 + dj2 <= n - 1)
+                            value += dp[i + 1][j1 + dj1][j2 + dj2];
                         else
-                            ans += -1e9;
-                        maxi = max(maxi, ans);
+                            value += -1e9;
+                        maxi = max(maxi, value);
                     }
                 }
                 dp[i][j1][j2] = maxi;
@@ -135,28 +132,33 @@ int tabulation(int m, int n, vector<vector<int>> grid)
         }
     }
 
-return dp[0][0][n-1];
-    
+    return dp[0][0][n - 1];
 }
+
 int optimised(int m, int n, vector<vector<int>> grid)
 {
-    //same as tabulation but we are reducing the space taken by taking only a 2D matrix
-    vector<vector<int>> prev (n, vector<int> (n,0)), temp (n, vector<int> (n,0));;
-    //forming base case
-    for (int j1 = 0 ; j1 < n; j1++)
-        for (int j2 = 0 ; j2 < n; j2++)
+    // same as tabulation but we are reducing the space taken by taking only a 2D matrix
+    vector<vector<int>> prev(n, vector<int>(n, 0)), temp(n, vector<int>(n, 0));
+    ;
+    // forming base case
+    for (int j1 = 0; j1 < n; j1++)
+        for (int j2 = 0; j2 < n; j2++)
         {
-        if (j1 == j2)
-            prev[j1][j2] = grid[m - 1][j1];
-        else
-            prev[j1][j2] = grid[m - 1][j1] + grid[m - 1][j2];
+            if (j1 == j2)
+                prev[j1][j2] = grid[m - 1][j1];
+            else
+                prev[j1][j2] = grid[m - 1][j1] + grid[m - 1][j2];
         }
-    //express every step in for loop
-    for(int i = m - 2; i >= 0; i--){
-        for (int j1 = 0; j1 < n ; j1++){
-            for (int j2 = 0; j2 < n ; j2++){
-                int maxi = INT_MIN;
-                for (int dj1 = -1; dj1 <= 1; dj1++){
+    // express every step in for loop
+    for (int i = m - 2; i >= 0; i--)
+    {
+        for (int j1 = 0; j1 < n; j1++)
+        {
+            for (int j2 = 0; j2 < n; j2++)
+            {
+                int maxi = -1e8;
+                for (int dj1 = -1; dj1 <= 1; dj1++)
+                {
                     for (int dj2 = -1; dj2 <= 1; dj2++)
                     {
                         int ans;
@@ -165,7 +167,7 @@ int optimised(int m, int n, vector<vector<int>> grid)
                             ans = grid[i][j1];
                         else
                             ans = grid[i][j1] + grid[i][j2];
-                        if(j2 + dj2 >= 0 && j1 + dj1 >= 0 && j1 + dj1 <= n - 1 && j2 + dj2 <= n - 1 )
+                        if (j2 + dj2 >= 0 && j1 + dj1 >= 0 && j1 + dj1 <= n - 1 && j2 + dj2 <= n - 1)
                             ans += prev[j1 + dj1][j2 + dj2];
                         else
                             ans += -1e9;
@@ -178,8 +180,7 @@ int optimised(int m, int n, vector<vector<int>> grid)
         prev = temp;
     }
 
-return prev[0][n-1];
-    
+    return prev[0][n - 1];
 }
 int getmaxcherry(vector<vector<int>> grid)
 {
@@ -203,6 +204,6 @@ int main()
     cout << getmaxcherry(grid);
 }
 
-// TC -> O(N*M*M)*9 
-//Reason: The outer nested loops run for (N*M*M) times and the inner two nested loops run for 9 times.
+// TC -> O(N*M*M)*9
+// Reason: The outer nested loops run for (N*M*M) times and the inner two nested loops run for 9 times.
 // SC -> O(N*M*M) or o(M*M) if using optimisation of space

@@ -45,26 +45,23 @@ int tabulation(vector<vector<int>> &triangle, int n)
     for (int j = 0; j < n; j++)
         dp[n - 1][j] = triangle[n - 1][j];
 
-    for (int i = n - 2; i >= 0; i--)
-        for (int j = i; j >= 0; j--)
-        {
-
+    for (int i = n - 2; i >= 0; i--){
+        for (int j = i; j >= 0; j--){
             int down = dp[i + 1][j];
             int diagonal = dp[i + 1][j + 1];
 
             dp[i][j] = triangle[i][j] + min(down, diagonal);
         }
+    }
 
     return dp[0][0];
 }
 
 //short for space optimised function
-int so(vector<vector<int>> &triangle, int n)
+int spaceOptimisedSolution(vector<vector<int>> &triangle, int n)
 {
     //we only previous row to calculate current row so we need only 1D array to store previous row result
     vector<int> prev(n,0);
-
-    
     for (int j = 0; j < n; j++)
         prev[j] = triangle[n - 1][j];
         
@@ -88,7 +85,7 @@ int minimumPathSum(vector<vector<int>> &triangle, int n)
 {
     // vector<vector<int>> dp(n, vector<int>(n, -1));
     // int ans = memoization(0, 0, triangle, n, dp);
-    int ans = so(triangle, n);
+    int ans = spaceOptimisedSolution(triangle, n);
     return ans;
 }
 int main()

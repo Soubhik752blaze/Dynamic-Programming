@@ -41,13 +41,13 @@ int memoization(int i, int j, vector<vector<int>> &maze, vector<vector<int>> &dp
     // final return
     return dp[i][j] = maze[i][j] + min(way1,way2);
 }
+
 int tabulation(int m, int n, vector<vector<int>> maze)
 {
     vector<vector<int>> dp(m, vector<int>(n, 0));
     for (int i = 0; i < m; i++){
         for (int j = 0; j < n; j++)
-        {
-            // base condition
+        {// base condition
             if (i == 0 && j == 0)
             {
                 dp[i][j] = maze[i][j];
