@@ -1,4 +1,4 @@
-/*Question :- We are given an array ‘ARR’ with N positive integers and an integer D.
+/*Question :- We are given an array ‘ARR’ with N positive integers (including 0 ) and an integer D.
 We need to count the number of ways we can partition the given array into two subsets,
 S1 and S2 such that S1 – S2 = D and S1 is always greater than or equal to S2.*/
 
@@ -21,7 +21,7 @@ int recursive(int i, vector<int> &arr, int target)
             return 2; // 2 cases -pick and not pick
         if (target == 0 || arr[i] == target)
             return 1; // 1 case - not pick
-        return 0;     // 1 case -pick
+        return 0;     
     }
 
     int not_taken = recursive(i - 1, arr, target);
@@ -51,24 +51,26 @@ int memoization(int i, vector<int> &arr, int target, vector<vector<int>> &dp)
         taken = memoization(i - 1, arr, target - arr[i], dp);
     return dp[i][target] = taken + not_taken;
 }
+
 int tabulation(vector<int> &num, int k)
 {
     int n = num.size();
 
     vector<vector<int>> dp(n, vector<int>(k + 1, 0));
 
+    //case where 0th element is 0 and target is also 0
     if (num[0] == 0)
-        dp[0][0] = 2; // 2 cases -pick and not pick
+        dp[0][0] = 2; // 2 cases - pick or not pick
+    //case where 0th element is 0 and target is not 0
     else
         dp[0][0] = 1; // 1 case - not pick
 
-    if (num[0] != 0 && num[0] <= k)
+    //case where 0th element is not 0 and is also <= target
+    if (num[0] != 0 && num[0] <= k) //
         dp[0][num[0]] = 1; // 1 case -pick
 
-    for (int ind = 1; ind < n; ind++)
-    {
-        for (int target = 0; target <= k; target++)
-        {
+    for (int ind = 1; ind < n; ind++){
+        for (int target = 0; target <= k; target++){
 
             int notTaken = dp[ind - 1][target];
 
@@ -81,6 +83,7 @@ int tabulation(vector<int> &num, int k)
     }
     return dp[n - 1][k];
 }
+
 int countpartitionswithgivendifference(vector<int> &arr, int diff)
 {
     //int n = arr.size();
@@ -88,7 +91,7 @@ int countpartitionswithgivendifference(vector<int> &arr, int diff)
     for (auto x : arr)
         sum += x;
     if (sum < diff || (sum - diff) % 2)
-        return false;
+        return 0;
     //vector<vector<int>> dp(n, vector<int>(sum + 1, -1));
     int ans = tabulation(arr, (sum - diff) / 2);
     return ans;

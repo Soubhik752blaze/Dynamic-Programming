@@ -31,8 +31,7 @@ int recursion(int i, vector<int> &wt, vector<int> &val, int weight)
 }
 
 int tabulation(vector<int> &wt, vector<int> &val, int W)
-{
-
+{ 
     int n = val.size();
     vector<vector<int>> dp(n, vector<int>(W + 1, 0));
     // base case
